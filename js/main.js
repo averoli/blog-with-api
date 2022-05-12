@@ -1,10 +1,5 @@
 
 function getUserData(id){
-    let dataUser={
-        "userName": "",
-        "userEmail": "",
-    }
-    console.log(id);
     //We need to fecth users and filter and take the user data who has the same userId to id parameter
     fetch("http://localhost:3000/users")
     .then(res=>res.json())
@@ -44,10 +39,6 @@ const fetchPosts = fetch("http://localhost:3000/posts")
             const modalBodyInput = staticBackdrop.querySelector('.modal-body')
             modalTitle.textContent = document.getElementById(postElement.getAttribute("id")).textContent;
             modalBodyInput.textContent = post.body;
-            const userName = document.createElement("span");
-            const userEmail = document.createElement("span");
-            userName.setAttribute("id","userName");
-            userEmail.setAttribute("id", "userEmail");
 
             const postElementId = document.getElementById(postElement.getAttribute("id"));
             const userId = postElementId.getAttribute("UserId");
