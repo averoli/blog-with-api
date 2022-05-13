@@ -10,8 +10,10 @@
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
     />
-    <script src="../js/main.js"></script>
-    <script src="../js/users.js"></script>
+    <script type="module" src="../js/main.js" ></script>
+    <script type="module" src="../js/users.js"></script>
+    <script type="module" src="../js/delete.js"></script>
+    <script type="module" src="../js/update.js"></script>
     <title>Document</title>
   </head>
   <body>
@@ -68,6 +70,28 @@
                  
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="modalEdit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Edit post</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-floating mb-3">
+                <textarea class="form-control" id="titleEdit" rows="3"></textarea>
+              </div>
+              <div class="form-floating">
+                <textarea class="form-control" id="bodyEdit" rows="3"></textarea>
+                
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" id="saveEdit" data-bs-dismiss="modal">Save</button>
             </div>
           </div>
         </div>

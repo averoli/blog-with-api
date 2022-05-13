@@ -1,3 +1,6 @@
+import deletePost from "./delete.js";
+import updatePost from "./update.js";
+
 function getUserData(id) {
   //We need to fecth users and filter and take the user data who has the same userId to id parameter
   fetch("http://localhost:3000/users")
@@ -18,18 +21,23 @@ function getPostComments(id) {
     .then((data) => {
       const comments = data.filter((comment) => comment.postId == id);
       const commentsBlock = document.querySelector(".card");
+
       comments.forEach((comment) => {
+        if (!commentsBlock.hasChildNodes()) {
+          console.log("kuku");
+        }
         const commentName = document.createElement("p");
         const commentText = document.createElement("p");
         const commentEmail = document.createElement("p");
-        commentName.append(comment.name);
-        commentText.append(comment.body);
-        commentEmail.append(comment.email);
+        commentName.textContent = comment.name;
+        commentText.textContent = comment.body;
+        commentEmail.textContent = comment.email;
         commentsBlock.append(commentName);
         commentsBlock.append(commentText);
         commentsBlock.append(commentEmail);
       });
-    });
+    })
+    .catch((error) => console.warn(error));
 }
 
 //Getting posts and show
@@ -39,23 +47,36 @@ const fetchPosts = fetch("http://localhost:3000/posts")
     const postsList = document.getElementById("listGroup");
     data.forEach((post) => {
       const postElement = document.createElement("li");
+      const btnUpdate = document.createElement("button");
+      const btnDelete = document.createElement("button");
+      const postTitle = post.title;
+
       postElement.classList.add("list-group-item");
+      btnUpdate.classList.add("btn", "btn-outline-primary");
+      btnUpdate.setAttribute("id", post.id);
+      btnDelete.classList.add("btn", "btn-outline-secondary");
+      btnDelete.setAttribute("id", post.id);
+      btnUpdate.append("Edit");
+      btnDelete.append("Delete");
       postElement.setAttribute("data-bs-toggle", "modal");
       postElement.setAttribute("data-bs-target", "#staticBackdrop");
-      const postTitle = post.title;
+
+      btnUpdate.setAttribute("data-bs-toggle", "modal");
+      btnUpdate.setAttribute("data-bs-target", "#modalEdit");
+
       postElement.append(postTitle);
       postElement.setAttribute("id", post.id);
       postElement.setAttribute("userId", post.userId);
-      postElement.addEventListener("click", function (event) {
-        // Button that triggered the modal
-        // const button = event.relatedTarget
-        // Extract info from data-bs-* attributes
-        // If necessary, you could initiate an AJAX request here
-        // and then do the updating in a callback.
-        //
-        // Update the modal's content.
-        const modalTitle = staticBackdrop.querySelector(".modal-title");
-        const modalBodyInput = staticBackdrop.querySelector(".modal-body");
+
+      const modalTitle = staticBackdrop.querySelector(".modal-title");
+      const modalBodyInput = staticBackdrop.querySelector(".modal-body");
+      //
+      //MODAL WITH
+      //POST TITLE, POST BODY
+      //USER NAME, USER EMAIL
+      //COMMENTS
+      //
+      postElement.addEventListener("click", function () {
         modalTitle.textContent = document.getElementById(
           postElement.getAttribute("id")
         ).textContent;
@@ -69,7 +90,43 @@ const fetchPosts = fetch("http://localhost:3000/posts")
         getUserData(userId);
         getPostComments(postId);
       });
+      //
+      //DELELE POST
+      //
+      btnDelete.addEventListener("click", function () {
+        const btnDeleteId = document.getElementById(
+          btnDelete.getAttribute("id")
+        );
+        const postId = btnDeleteId.getAttribute("id");
+        deletePost(postId);
+      });
+
+      //
+      //UPDATE POST
+      //
+    //   let titleEdit = document.getElementById("titleEdit");
+    //   let bodyEdit = document.getElementById("bodyEdit");
+    //   btnUpdate.addEventListener("click", function () {
+    //     titleEdit.textContent = post.title;
+    //     bodyEdit.textContent = post.body;
+    //   });
+
+    //   document
+    //     .getElementById("saveEdit")
+    //     .addEventListener("click", function (e) {
+    //       const btnUpdateId = document.getElementById(
+    //         btnUpdate.getAttribute("id")
+    //       );
+    //       const postId = btnUpdateId.getAttribute("id");
+    //       titleEdit = e.target.value;
+    //       console.log(titleEdit);
+    //       bodyEdit = e.target.value;
+    //       updatePost(postId, titleEdit, bodyEdit);
+    //     });
+
       postsList.append(postElement);
+      postsList.append(btnUpdate);
+      postsList.append(btnDelete);
     });
   })
   .catch((error) => console.warn(error));
