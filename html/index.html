@@ -1,55 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="../js/main.js"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link href="../css/main.css" rel="stylesheet"/>
+    <script src="https://kit.fontawesome.com/a8609ee1f0.js" crossorigin="anonymous"></script>
+    <script type="module" src="../js/main.js"></script>
+    <!--<script src="../js/users.js"></script>-->
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="container-fluid justify-content-center">
-              <a class="navbar-brand" href="#">BLOG</a>
-            </div>
-        </nav>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid justify-content-center">
+          <a class="navbar-brand" href="#"><img class="a__img--logo" src="../assets/blog-49006_640.png"></a>
+          <input type="text" class="div__input--search" id="input-search" placeholder="Search posts">
+          <i class="fa-solid fa-magnifying-glass" id="search-icon"></i>
+        </div>
+      </nav>
     </header>
-    <main>
-        <ul class="list-group" id="listGroup">
-        </ul>
-        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title"></h5>
-                  <p id ="description"></p>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  ...
-                </div>
-                <h5>
-                    User Name:
-                </h5>
-                <p class="user-name" id="userName"></p>
+    <main id="main-container">
+      <ul class="list-group" id="listGroup"></ul>
+      <div
+        class="modal fade"
+        id="staticBackdrop"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+              <h5 class="modal-title"></h5>
+              <p id="description"></p>
+            </div>
+            <div class="modal-body">...</div>
+            <h5 class ="user__name--Section">User Name:</h5>
+            <p class="user-name" id="userName"></p>
 
-                <p class="email" id="email"></p>
-                <div class="modal-footer">
-                    <button class="btn btn-primary" id="buttonComments" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        Comments
-                    </button>
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body" id ="divPadre">
-                          Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
-                        </div>
-                    </div>
+            <p class="email" id="email"></p>
+            
+            <div class="modal-footer">
+              <button
+                class="btn btn-primary"
+                type="button"
+                id="buttonComments"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseExample"
+                aria-expanded="false"
+                aria-controls="collapseExample"
+              >
+                Comments
+              </button>
+              
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body" id="div-card-body-collapse">                 
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <!--                          -->
+      <div
+        class="modal fade"
+        id="staticBackdrop-form"
+        data-bs-backdrop="static"
+        data-bs-keyboard="false"
+        tabindex="-1"
+        aria-labelledby="staticBackdropLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header row">
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+              <div class="mb-3 col">
+                <label for="exampleFormControlInput1" class="form-label">New Title</label>
+                <input type="text" class="form-control" id="titleModified">
+              </div>
+              <div class="mb-3 col">
+                <label for="exampleFormControlTextarea1" class="form-label">New Description</label>
+                <textarea class="form-control" id="descriptionModified" rows="3"></textarea>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                class="btn btn-primary"
+                type="button"
+                id="buttonSend"                
+              >
+                Send
+              </button>
+          </div>
+        </div>
+      </div>
+      <!-- -->
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-</body>
+  </body>
 </html>
