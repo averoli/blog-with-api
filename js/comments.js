@@ -1,5 +1,5 @@
 
-export function getPostComments(id, order) {
+export function getPostComments(id) {
     fetch(`http://localhost:3000/comments`)
       .then((res) => res.json())
       .then((data) => {

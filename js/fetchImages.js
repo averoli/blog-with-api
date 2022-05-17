@@ -5,6 +5,7 @@ function fetchImages(){
     .then(data=>{
         let images = [];
         data.hits.forEach(img=>{
+            console.log("Images", data);
             images.push(img.previewURL);
         })
         addImagestoBlog(images);
